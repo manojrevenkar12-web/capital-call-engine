@@ -1,0 +1,33 @@
+# Schema changes run once per release, before the new pods start (Argo CD / Helm hook
+# ordering in the overlay); the service never migrates on start in production.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: capital-call-engine-migrate
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      serviceAccountName: capital-call-engine
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+        - name: migrate
+          image: capital-call-engine:latest
+          command: ["node", "dist/scripts/migrate.js"]
+          envFrom:
+            - secretRef:
+                name: capital-call-engine
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests: { cpu: 50m, memory: 128Mi }
+            limits: { memory: 256Mi }

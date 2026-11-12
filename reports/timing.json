@@ -1,0 +1,30 @@
+{
+  "latencyMsP95": [
+    {
+      "seed": 1,
+      "closing": 117.5,
+      "call": 47.5,
+      "distribution": 40.8,
+      "statement": 14.7
+    },
+    {
+      "seed": 2,
+      "closing": 78,
+      "call": 54.4,
+      "distribution": 24.5,
+      "statement": 13.7
+    },
+    {
+      "seed": 3,
+      "closing": 69.6,
+      "call": 58.6,
+      "distribution": 30.6,
+      "statement": 15
+    }
+  ],
+  "seconds": [
+    34,
+    13,
+    25
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "seeds": [
+    101,
+    102
+  ],
+  "total": {
+    "seed": 203,
+    "ablation": null,
+    "funds": 7,
+    "investors": 188,
+    "closings": 20,
+    "calls": 69,
+    "distributions": 25,
+    "documents": {
+      "submitted": 188,
+      "accepted": 172,
+      "review": 16,
+      "neededReview": 16,
+      "caught": 16,
+      "missed": 0,
+      "unneeded": 0,
+      "acceptedWrong": 0
+    },
+    "commitments": {
+      "checked": 188,
+      "right": 188
+    },
+    "shares": {
+      "checked": 1828,
+      "right": 1828,
+      "centsOff": 0
+    },
+    "equalisation": {
+      "checked": 350,
+      "right": 350,
+      "catchUp": 1334830196,
+      "interest": 28523031
+    },
+    "notices": {
+      "expected": 2461,
+      "right": 2461,
+      "missing": 0,
+      "extra": 0
+    },
+    "delivery": {
+      "notices": 2543,
+      "exactlyOnce": 2543,
+      "never": 0,
+      "twiceOrMore": 0,
+      "failedForReview": 0
+    },
+    "payments": {
+      "investorEntries": 1755,
+      "autoRight": 1727,
+      "autoWrong": 0,
+      "toReview": 55,
+      "noise": 231,
+      "noiseAuto": 0
+    },
+    "cash": {
+      "credited": 26838942663,
+      "appliedToNotices": 26828000347,
+      "refundedOrHeld": 10942316,
+      "unaccounted": 0
+    },
+    "defaults": {
+      "truth": 82,
+      "flagged": 82,
+      "missed": 0,
+      "falseFlags": 0
+    },
+    "waterfall": {
+      "distributions": 25,
+      "tiersRight": 25,
+      "sharesChecked": 670,
+      "sharesRight": 670
+    },
+    "idempotency": {
+      "duplicateRequests": 21,
+      "replays": 21,
+      "sameBody": 21,
+      "extraEvents": 0
+    },
+    "tenancy": {
+      "probes": 96,
+      "probesRefused": 96
+    },
+    "faults": {
+      "providerAttempts": 2700,
+      "unavailable": 115,
+      "ambiguousDelivered": 72,
+      "ambiguousLost": 42,
+      "crashes": 21,
+      "statementResends": 28,
+      "duplicatePayments": 0
+    },
+    "operator": {
+      "paymentActions": 286,
+      "documentActions": 16
+    }
+  },
+  "runs": [
+    {
+      "seed": 101,
+      "ablation": null,
+      "funds": 3,
+      "investors": 81,
+      "closings": 9,
+      "calls": 31,
+      "distributions": 10,
+      "documents": {
+        "submitted": 81,
+        "accepted": 76,
+        "review": 5,
+        "neededReview": 5,
+        "caught": 5,
+        "missed": 0,
+        "unneeded": 0,
+        "acceptedWrong": 0
+      },
+      "commitments": {
+        "checked": 81,
+        "right": 81
+      },
+      "shares": {
+        "checked": 841,
+        "right": 841,
+        "centsOff": 0
+      },
+      "equalisation": {
+        "checked": 150,
+        "right": 150,
+        "catchUp": 640513444,
+        "interest": 8800246
+      },
+      "notices": {
+        "expected": 1096,
+        "right": 1096,
+        "missing": 0,
+        "extra": 0
+      },
+      "delivery": {
+        "notices": 1131,
+        "exactlyOnce": 1131,
+        "never": 0,
+        "twiceOrMore": 0,
+        "failedForReview": 0
+      },
+      "payments": {
+        "investorEntries": 824,
+        "autoRight": 813,
+        "autoWrong": 0,
+        "toReview": 23,
+        "noise": 81,
+        "noiseAuto": 0
+      },
+      "cash": {
+        "credited": 12455178453,
+        "appliedToNotices": 12451445151,
+        "refundedOrHeld": 3733302,
+        "unaccounted": 0
+      },
+      "defaults": {
+        "truth": 35,
+        "flagged": 35,
+        "missed": 0,
+        "falseFlags": 0
+      },
+      "waterfall": {
+        "distributions": 10,
+        "tiersRight": 10,
+        "sharesChecked": 270,
+        "sharesRight": 270
+      },
+      "idempotency": {
+        "duplicateRequests": 8,
+        "replays": 8,
+        "sameBody": 8,
+        "extraEvents": 0
+      },
+      "tenancy": {
+        "probes": 32,
+        "probesRefused": 32
+      },
+      "faults": {
+        "providerAttempts": 1202,
+        "unavailable": 57,
+        "ambiguousDelivered": 29,
+        "ambiguousLost": 14,
+        "crashes": 11,
+        "statementResends": 14,
+        "duplicatePayments": 0
+      },
+      "operator": {
+        "paymentActions": 104,
+        "documentActions": 5
+      }
+    },
+    {
+      "seed": 102,
+      "ablation": null,
+      "funds": 4,
+      "investors": 107,
+      "closings": 11,
+      "calls": 38,
+      "distributions": 15,
+      "documents": {
+        "submitted": 107,
+        "accepted": 96,
+        "review": 11,
+        "neededReview": 11,
+        "caught": 11,
+        "missed": 0,
+        "unneeded": 0,
+        "acceptedWrong": 0
+      },
+      "commitments": {
+        "checked": 107,
+        "right": 107
+      },
+      "shares": {
+        "checked": 987,
+        "right": 987,
+        "centsOff": 0
+      },
+      "equalisation": {
+        "checked": 200,
+        "right": 200,
+        "catchUp": 694316752,
+        "interest": 19722785
+      },
+      "notices": {
+        "expected": 1365,
+        "right": 1365,
+        "missing": 0,
+        "extra": 0
+      },
+      "delivery": {
+        "notices": 1412,
+        "exactlyOnce": 1412,
+        "never": 0,
+        "twiceOrMore": 0,
+        "failedForReview": 0
+      },
+      "payments": {
+        "investorEntries": 931,
+        "autoRight": 914,
+        "autoWrong": 0,
+        "toReview": 32,
+        "noise": 150,
+        "noiseAuto": 0
+      },
+      "cash": {
+        "credited": 14383764210,
+        "appliedToNotices": 14376555196,
+        "refundedOrHeld": 7209014,
+        "unaccounted": 0
+      },
+      "defaults": {
+        "truth": 47,
+        "flagged": 47,
+        "missed": 0,
+        "falseFlags": 0
+      },
+      "waterfall": {
+        "distributions": 15,
+        "tiersRight": 15,
+        "sharesChecked": 400,
+        "sharesRight": 400
+      },
+      "idempotency": {
+        "duplicateRequests": 13,
+        "replays": 13,
+        "sameBody": 13,
+        "extraEvents": 0
+      },
+      "tenancy": {
+        "probes": 64,
+        "probesRefused": 64
+      },
+      "faults": {
+        "providerAttempts": 1498,
+        "unavailable": 58,
+        "ambiguousDelivered": 43,
+        "ambiguousLost": 28,
+        "crashes": 10,
+        "statementResends": 14,
+        "duplicatePayments": 0
+      },
+      "operator": {
+        "paymentActions": 182,
+        "documentActions": 11
+      }
+    }
+  ],
+  "ranAt": "2026-11-12T19:02:26.131Z"
+}

@@ -1,0 +1,43 @@
+# Settings for the service. Fund economics (equalisation rate, preferred return,
+# carry, ticket limits) are stored per fund when it is created; these are the
+# defaults a fund gets when the request does not say.
+
+[server]
+port = 8080
+# The outbox worker runs inside the service; set to 0 to run it only on demand.
+dispatch_interval_ms = 5000
+dispatch_batch = 100
+
+[auth]
+# FusionAuth issues HS256 tokens in development; production verifies against the
+# tenant's JWKS (see docs/decisions.md). The secret comes from CCE_JWT_SECRET.
+issuer = "https://auth.bunch.local"
+audience = "capital-call-engine"
+tenant_claim = "tenantId"
+
+[fund_defaults]
+currency = "EUR"
+eq_rate_bps = 800
+eq_interest_to = "rebalanced_investors"
+pref_bps = 800
+carry_bps = 2000
+min_ticket = 10_000_000          # €100,000.00
+max_ticket = 5_000_000_000       # €50,000,000.00
+notice_days = 10                 # business days from notice to due date
+grace_days = 5                   # calendar days after the due date before a default is declared
+
+[matching]
+# When a payment's reference is missing or wrong, try the payer's known IBAN.
+iban_fallback = true
+
+[outbox]
+max_attempts = 8
+lease_seconds = 60
+# Ask the provider whether an earlier, unconfirmed attempt arrived before sending again.
+lookup_before_retry = true
+from = "notices@capital-call-engine.example"
+
+[sendgrid]
+# Used only when CCE_SENDGRID_API_KEY is set.
+base_url = "https://api.sendgrid.com"
+timeout_ms = 10000

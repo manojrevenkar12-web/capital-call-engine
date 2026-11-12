@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: fund-operations
+resources:
+  - ../../base
+  - external-secret.yaml
+images:
+  - name: capital-call-engine
+    newName: 123456789012.dkr.ecr.eu-central-1.amazonaws.com/capital-call-engine
+    newTag: "0.1.0"
+patches:
+  - target: { kind: ServiceAccount, name: capital-call-engine }
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/capital-call-engine
+  - target: { kind: Deployment, name: capital-call-engine }
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3

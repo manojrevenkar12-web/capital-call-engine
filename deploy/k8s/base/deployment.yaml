@@ -1,0 +1,64 @@
+# Every replica runs the outbox worker too: rows are claimed with FOR UPDATE SKIP LOCKED
+# and a lease, so two pods never send the same notice.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capital-call-engine
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: /metrics
+    spec:
+      serviceAccountName: capital-call-engine
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile: { type: RuntimeDefault }
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: capital-call-engine
+      containers:
+        - name: api
+          image: capital-call-engine:latest
+          ports:
+            - { name: http, containerPort: 8080 }
+          env:
+            - { name: CCE_CONFIG, value: /etc/cce/engine.toml }
+          envFrom:
+            - secretRef:
+                name: capital-call-engine
+          volumeMounts:
+            - { name: config, mountPath: /etc/cce, readOnly: true }
+          readinessProbe:
+            httpGet: { path: /readyz, port: http }
+            periodSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 200m, memory: 256Mi }
+            limits: { memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+      volumes:
+        - name: config
+          configMap:
+            name: capital-call-engine-config

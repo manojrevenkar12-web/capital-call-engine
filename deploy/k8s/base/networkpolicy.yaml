@@ -1,0 +1,27 @@
+# In: the ingress controller and Prometheus. Out: DNS, MySQL (RDS) and HTTPS to the
+# e-mail provider. Nothing else.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: capital-call-engine
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: capital-call-engine
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: ingress-nginx }
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: monitoring }
+      ports:
+        - { port: 8080, protocol: TCP }
+  egress:
+    - ports:
+        - { port: 53, protocol: UDP }
+        - { port: 53, protocol: TCP }
+    - ports:
+        - { port: 3306, protocol: TCP }
+    - ports:
+        - { port: 443, protocol: TCP }

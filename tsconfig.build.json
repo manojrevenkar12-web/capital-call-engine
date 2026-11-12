@@ -1,0 +1,1 @@
+{ "extends": "./tsconfig.json", "include": ["src/app", "src/domain", "src/money", "scripts/migrate.ts"] }
